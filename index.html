@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจเช็คลิงค์อันตราย</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ตรวจเช็คลิงค์อันตราย</h1>
+        
+        <!-- กล่องข้อความอธิบายการใช้งาน -->
+        <div class="info-box">
+            <h3>วิธีการใช้งาน:</h3>
+            <p>1. กรอก URL ของเว็บไซต์ที่คุณต้องการตรวจสอบในช่องด้านล่าง</p>
+            <p>2. กดปุ่ม "Analyze" เพื่อประเมินความเสี่ยง</p>
+            <p>3. ระบบจะแสดงผลว่าเว็บไซต์ดังกล่าวมีความเสี่ยง <b>สูง (High)</b>, <b>ปานกลาง (Medium)</b>, หรือ <b>ต่ำ (Low)</b></p>
+        </div>
+
+        <!-- ฟอร์มสำหรับกรอก URL -->
+        <form method="POST" action="/">
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" required>
+            <button type="submit">Analyze</button>
+        </form>
+        
+        <!-- แสดงผลระดับความเสี่ยง -->
+        {% if risk %}
+        <div class="risk-box {{ risk.color }}">
+            <h2>ระดับความเสี่ยง: {{ risk.level }}</h2>
+            <p>{{ risk.description }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
